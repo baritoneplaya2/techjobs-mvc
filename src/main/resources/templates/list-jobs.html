@@ -9,8 +9,18 @@
 <div class="container body-content">
 
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
-
     <!-- TODO #3 - Use the same list display from search.html -->
+    <!-- Displays jobs with alternately white and gray backgrounds -->
+    <!-- separate table for "ALL" to list EVERY column and content -->
+
+    <!-- separate table for "Position Type", "Employer", "Location", "Skill"g -->
+    <table th:fragment="job-listing" class="job-listing" th:each="job: ${someJobs}">
+        <tr th:each="mapEntry: ${job}" th:switch="${mapEntry.key}">
+            <td th:text="${#strings.capitalizeWords(mapEntry.key)}"></td>
+            <td th:case="'name'" th:text="${mapEntry.value}"></td>
+            <td th:case="*"><a th:href="@{/list/jobs(column=${mapEntry.key},value=${mapEntry.value})}" th:text="${mapEntry.value}"></a></td>
+        </tr>
+    </table>
 
 </div>
 
