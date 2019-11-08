@@ -12,10 +12,10 @@ import java.util.HashMap;
 @Controller
 public class HomeController extends TechJobsController {
 
-    //Hashmap removed to be used with TechJobsController
     @RequestMapping(value = "")
     public String index(Model model) {
         model.addAttribute("actions", actionChoices);
+
         return "index";
     }
 
